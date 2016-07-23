@@ -24,7 +24,7 @@ public class User {
 	private String name;
 	private String profileName;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true,targetEntity=Message.class)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true,targetEntity=Message.class,mappedBy="user")
 	private List<Message> messages;
 	
 	public User() {

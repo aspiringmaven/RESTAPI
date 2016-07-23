@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -23,10 +24,21 @@ public class Message {
 	private String message;
 	private Date created;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=Comment.class)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=Comment.class,orphanRemoval=true,mappedBy="message")
 	private List<Comment> comments;
 	
+	@ManyToOne(cascade=CascadeType.ALL)	
+	private User user;
 	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Message() {
 		super();		
 	}
