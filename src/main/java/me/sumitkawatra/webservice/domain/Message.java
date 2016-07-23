@@ -3,13 +3,28 @@ package me.sumitkawatra.webservice.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class Message {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "msg_seq_gen")
+	@SequenceGenerator(name = "msg_seq_gen", sequenceName = "msg_seq")
 	private long id;
+	
 	private String message;
 	private Date created;
+	
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=Comment.class)
 	private List<Comment> comments;
-	private User user;
 	
 	
 	public Message() {
@@ -47,12 +62,5 @@ public class Message {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}	
+	
 }

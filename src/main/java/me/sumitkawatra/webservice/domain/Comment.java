@@ -2,12 +2,21 @@ package me.sumitkawatra.webservice.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class Comment {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_seq_gen")
+	@SequenceGenerator(name = "comment_seq_gen", sequenceName = "comment_seq")
 	private long id;
 	private String comment;
 	private Date created;
-	private User user;
 	
 	public Comment() {
 		super();
@@ -35,17 +44,6 @@ public class Comment {
 
 	public void setCreated(Date created) {
 		this.created = created;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	
-	
+	}	
 	
 }
