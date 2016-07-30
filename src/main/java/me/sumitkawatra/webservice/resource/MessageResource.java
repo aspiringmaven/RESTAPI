@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import me.sumitkawatra.webservice.domain.Message;
 import me.sumitkawatra.webservice.service.MessageService;
@@ -26,6 +27,12 @@ public class MessageResource {
 		return messageService.getAll();
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{messageId}")
+	public Message getMessage(@PathVariable("messageId")int messageId) {
+		return messageService.getById(messageId);
+	}
 	
 	public MessageResource() {
 		super();
