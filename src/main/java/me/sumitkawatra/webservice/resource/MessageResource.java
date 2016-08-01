@@ -5,7 +5,9 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -41,6 +43,15 @@ public class MessageResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Message saveMessage(Message message) {
+		//TODO
+		return message;
+	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/messageId")
+	public Message updateUser(@PathParam("messageId") int messageId, Message message) {
 		//TODO
 		return message;
 	}
